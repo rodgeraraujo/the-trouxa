@@ -2,7 +2,12 @@
     <div class="container transition">
         <div>
             <div class="links">
-                <Quote :quote="quote" />
+                <div v-if="loading">
+                    <img class="loading" src="/loading.gif" alt />
+                </div>
+                <div v-else>
+                    <Quote :quote="quote" />
+                </div>
             </div>
         </div>
     </div>
@@ -21,14 +26,15 @@ export default {
         return {
             quotes: [],
             quote: Object,
-            databaseQuote: Object
+            databaseQuote: Object,
+            loading: true
         };
     },
     middleware: "redirect",
     components: {
         Quote
     },
-    created() {
+    mounted() {
         this.quotes = quoteData.sentences;
         var choice = Math.floor(Math.random() * this.quotes.length);
 
@@ -43,12 +49,11 @@ export default {
     },
     methods: {
         storeData(obj) {
-            let objJsonStr = JSON.stringify(obj);
-            let objJsonB64 = Buffer.from(objJsonStr).toString("base64");
-
             this.databaseQuote = {
-                uid: this.uuidv4(),
-                base64: objJsonB64,
+                uid: this.uuidv4().replace(/-/g, ""),
+                name: obj.name,
+                text: obj.text,
+                emoji: obj.emoji,
                 created_at: new Date()
             };
 
@@ -58,10 +63,11 @@ export default {
                 .push()
                 .set(this.databaseQuote)
                 .then(() => {
-                    console.log("success");
+                    this.loading = false;
                 })
                 .catch(error => {
                     console.log(error);
+                    this.$router.push({ path: "/" });
                 });
         },
         uuidv4() {
@@ -80,6 +86,9 @@ export default {
 </script>
 
 <style scoped>
+.loading {
+    width: 50px;
+}
 @media only screen and (max-width: 600px) {
     .TheTrouxaLogo {
         margin-top: -40px;
