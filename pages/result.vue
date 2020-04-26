@@ -50,19 +50,19 @@ export default {
     methods: {
         storeData(obj) {
             this.databaseQuote = {
-                uid: this.uuidv4().replace(/-/g, ""),
+                uuid: this.uuidv4().replace(/-/g, ""),
                 name: obj.name,
                 text: obj.text,
                 emoji: obj.emoji,
+                image: obj.image,
                 created_at: new Date()
             };
 
             firebase
-                .database()
-                .ref("texts")
-                .push()
-                .set(this.databaseQuote)
-                .then(() => {
+                .firestore()
+                .collection("texts")
+                .add(this.databaseQuote)
+                .then(ref => {
                     this.loading = false;
                 })
                 .catch(error => {
