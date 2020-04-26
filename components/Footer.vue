@@ -18,14 +18,16 @@
     color: red;
 }
 .container {
-    font-size: 50px;
-    position: relative;
-    clear: both;
-    text-align: center;
     height: 50px;
     line-height: 50px;
-    font-size: 80%;
     padding: 1rem;
-    /* background-color: #efefef; */
+    font-size: 15px;
+    /* position: fixed; */
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    /* background: darkgray; */
+    /* color: white; */
+    text-align: center;
 }
 </style>

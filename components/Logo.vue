@@ -1,9 +1,13 @@
 <template>
-    <div>
-        <img class="TheTrouxaLogo img" src="/logo.jpg" alt />
+    <div class="logo">
+        <nuxt-link class="TheTrouxaLogo img" src="/logo.jpg" tag="img" to="/"></nuxt-link>
+        <!-- <img src alt /> -->
     </div>
 </template>
 <style>
+.logo {
+    padding-top: -10px;
+}
 .img {
     display: block;
     margin-left: auto;

@@ -1,0 +1,164 @@
+.container {
+  margin: 0 auto;
+  padding: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.instructions {
+  padding-left: 5px;
+}
+
+form {
+  width: 500px;
+  padding: 10px 40px;
+}
+
+input {
+  font-size: 20px;
+  border: 1px solid #ccc;
+  color: #333;
+  width: calc(100% - 30px);
+}
+input,
+button {
+  border-radius: 4px;
+  padding: 8px 15px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 300;
+}
+div {
+  position: inherit;
+  padding-top: 10px;
+}
+
+button {
+  background-color: #ff6b6b;
+  border-radius: 5px;
+  border: 1px solid #fa6363;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 17px;
+  padding: 5px 31px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #c95858;
+  margin: 15px;
+}
+
+button:hover {
+  transform: translateY(2px);
+}
+
+blockquote {
+  position: relative;
+  padding-left: 30px;
+  font-weight: 500;
+  color: #443c53;
+  padding: 0.93em;
+  margin: 1em;
+  max-width: 33em;
+  font-size: 24px;
+}
+blockquote:before {
+  content: "“";
+  font-family: serif;
+  position: absolute;
+  right: 90%;
+  font-size: 250px;
+  line-height: 0px;
+  top: 50px;
+  color: darkgray;
+  opacity: 0.3;
+}
+
+blockquote:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 100%;
+  width: 80px;
+  height: 5px;
+  background: #00405c;
+  left: 1em;
+}
+
+.image {
+  width: 45%;
+  height: auto;
+}
+
+.quote {
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  display: block;
+  font-weight: 300;
+  font-size: 23px;
+  color: #35495e;
+  letter-spacing: 1px;
+}
+
+.subquote {
+  font-weight: 300;
+  font-size: 18px;
+  color: #526488;
+  word-spacing: 5px;
+  padding-bottom: 15px;
+}
+
+.localButton {
+  background-color: #ff6b6b;
+  border-radius: 5px;
+  border: 1px solid #fa6363;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 17px;
+  padding: 5px 31px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #c95858;
+}
+.localButton:hover {
+  background-color: #c15353;
+}
+.localButton:active {
+  position: relative;
+  top: 1px;
+}
+@media (hover: hover) {
+  .localButton:hover {
+    background-color: #c15353;
+    color: white;
+  } /* hover styles here */
+}
+
+@media only screen and (max-width: 600px) {
+  .image {
+    width: 99%;
+    height: auto;
+  }
+
+  .instructions {
+    margin: 40px;
+    top: 130px;
+    position: absolute;
+    left: 0px;
+  }
+
+  blockquote:before {
+    right: 65%;
+    top: 73px;
+    font-size: 250px;
+    color: darkgray;
+    opacity: 0.3;
+  }
+
+  .image {
+    width: 100%;
+    height: auto;
+  }
+}
