@@ -5,11 +5,11 @@ import "firebase/auth";
 import "firebase/storage";
 
 var config = {
-  apiKey: "AIzaSyD2jW6TRVExv50LB4NnhLR8Zv4RkUcb0is",
-  authDomain: "thetrouxa-29a62.firebaseapp.com",
-  databaseURL: "https://thetrouxa-29a62.firebaseio.com",
-  projectId: "thetrouxa-29a62",
-  storageBucket: "thetrouxa-29a62.appspot.com"
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.FIREBASE_DATABASEURL,
+  projectId: process.env.FIREBASE_PROJECTID,
+  storageBucket: process.env.FIREBASE_STORAGEBUCKET
 };
 
 if (firebase.apps.length === 0) {
