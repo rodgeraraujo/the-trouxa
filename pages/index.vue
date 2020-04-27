@@ -30,12 +30,12 @@ export default {
                 {
                     name: "twitter:title",
                     content:
-                        "The Ttrouxa - por qual motivo você é um trouxa? descubra"
+                        "The Trouxa - por qual motivo você é um trouxa? descubra"
                 },
                 {
                     name: "twitter:description",
                     content:
-                        "Uma forma divertida de descobrir e compartilhar com amigos do twitter, o porque de vocêr ser trouxa."
+                        "Uma forma divertida de descobrir e compartilhar com amigos do twitter, o porque de você ser trouxa."
                 },
                 {
                     name: "twitter:image",

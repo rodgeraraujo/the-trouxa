@@ -4,13 +4,30 @@
             <div class="container">
                 Made with
                 <strong class="grey-text text-lighten-4 right heart">&nbsp;❤&nbsp;</strong>
-                by Rogério Araújo
+                by&nbsp;
+                <a
+                    class="author"
+                    href="https://twitter.com/nik4n"
+                >Rogério Araújo</a>
             </div>
         </div>
     </footer>
 </template>
 
 <style scoped>
+.author {
+    text-decoration: none;
+}
+
+.author:visited {
+    color: #01b1ed;
+}
+
+.author:hover {
+    color: #017096;
+    cursor: pointer;
+}
+
 .footer-copyright {
     font-size: 18px;
 }

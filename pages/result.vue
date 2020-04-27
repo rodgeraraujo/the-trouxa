@@ -36,7 +36,7 @@ export default {
                 {
                     name: "twitter:description",
                     content:
-                        "Uma forma divertida de descobrir e compartilhar com amigos do twitter, o porque de vocêr ser trouxa."
+                        "Uma forma divertida de descobrir e compartilhar com amigos do twitter, o porque de você ser trouxa."
                 },
                 {
                     name: "twitter:image",
@@ -109,7 +109,7 @@ export default {
                 var text = `${this.databaseQuote.name}, você é um trouxa por ${this.databaseQuote.text} ${this.databaseQuote.emoji}`;
                 var urlText = `https://thetrouxa.surge.sh/${this.databaseQuote.uuid}`;
 
-                var url = `https://twitter.com/intent/tweet?hashtags=ThetTrouxaApp&hashtags=Trouxa&original_referer=${urlText}&text="${text}"&url=${urlText} `;
+                var url = `https://twitter.com/intent/tweet?hashtags=TheTrouxaApp&hashtags=Trouxa&original_referer=${urlText}&text="${text}"&url=${urlText} `;
                 window.location = url;
             }
         },
