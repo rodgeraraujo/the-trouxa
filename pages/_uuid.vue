@@ -37,6 +37,29 @@ const emoji = require("emoji.json");
 
 export default {
     components: { Quote },
+    head() {
+        return {
+            title: "The Trouxa App -  Resultado...",
+            meta: [
+                {
+                    name: "twitter:title",
+                    content:
+                        "The Trouxa App - por qual motivo você é um trouxa? descubra"
+                },
+                {
+                    name: "twitter:description",
+                    content:
+                        "Uma forma divertida de descobrir e compartilhar com amigos do twitter, o porque de vocêr ser trouxa."
+                },
+                {
+                    name: "twitter:image",
+                    content:
+                        "https://raw.githubusercontent.com/rodgeraraujo/the-trouxa/master/static/logo.jpg?token=AE7AODEDLVREUKQ525VGUE26V5ZYG"
+                },
+                { name: "twitter:card", content: "summary_large_image" }
+            ]
+        };
+    },
     data() {
         return {
             uuid: this.$route.params.uuid,
@@ -61,6 +84,9 @@ export default {
                     this.loading = false;
                     const doc = data.docs.map(doc => doc.data());
                     this.databaseQuote = doc[0];
+                    if (this.databaseQuote == null) {
+                        this.$router.push({ path: "/" });
+                    }
                 })
                 .catch(error => {
                     console.log(error);

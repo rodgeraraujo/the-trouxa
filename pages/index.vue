@@ -14,7 +14,7 @@
                     required
                 />
             </div>
-            <button type="submit">descobrir</button>
+            <button type="submit" :disabled="disabled">descobrir</button>
         </form>
     </div>
 </template>
@@ -23,10 +23,34 @@
 import Quote from "~/components/Quote.vue";
 
 export default {
+    head() {
+        return {
+            title: "The Trouxa App -  Inicial...",
+            meta: [
+                {
+                    name: "twitter:title",
+                    content:
+                        "The Ttrouxa - por qual motivo você é um trouxa? descubra"
+                },
+                {
+                    name: "twitter:description",
+                    content:
+                        "Uma forma divertida de descobrir e compartilhar com amigos do twitter, o porque de vocêr ser trouxa."
+                },
+                {
+                    name: "twitter:image",
+                    content:
+                        "https://raw.githubusercontent.com/rodgeraraujo/the-trouxa/master/static/logo.jpg?token=AE7AODBDHU5YJHO7DALA3WS6V5ZGO"
+                },
+                { name: "twitter:card", content: "summary_large_image" }
+            ]
+        };
+    },
     data() {
         return {
             name: "",
-            image: ""
+            image: "",
+            disabled: true
         };
     },
     components: {
@@ -35,7 +59,7 @@ export default {
     methods: {
         formSubmit() {
             this.$store.commit("success");
-
+            this.disabled = true;
             var nameUpper =
                 this.name.charAt(0).toUpperCase() + this.name.slice(1);
 
@@ -46,6 +70,7 @@ export default {
         },
 
         async fetchImage() {
+            this.disabled = false;
             const imageData = await this.$axios.$get(
                 "https://api.imgflip.com/get_memes"
             );

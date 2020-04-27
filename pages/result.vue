@@ -24,6 +24,29 @@ const emoji = require("emoji.json");
 
 export default {
     components: { Quote },
+    head() {
+        return {
+            title: "The Trouxa App -  Resultado...",
+            meta: [
+                {
+                    name: "twitter:title",
+                    content:
+                        "The Trouxa App - por qual motivo você é um trouxa? descubra"
+                },
+                {
+                    name: "twitter:description",
+                    content:
+                        "Uma forma divertida de descobrir e compartilhar com amigos do twitter, o porque de vocêr ser trouxa."
+                },
+                {
+                    name: "twitter:image",
+                    content:
+                        "https://raw.githubusercontent.com/rodgeraraujo/the-trouxa/master/static/logo.jpg?token=AE7AODEDLVREUKQ525VGUE26V5ZYG"
+                },
+                { name: "twitter:card", content: "summary_large_image" }
+            ]
+        };
+    },
     data() {
         return {
             quotes: [],
@@ -84,7 +107,7 @@ export default {
                 console.log(this.countDown);
             } else {
                 var text = `${this.databaseQuote.name}, você é um trouxa por ${this.databaseQuote.text} ${this.databaseQuote.emoji}`;
-                var urlText = `http://localhost:3000/8e9c28c92f4847d591aef6ef156d7b0f`;
+                var urlText = `https://156ac836.ngrok.io/${this.databaseQuote.uuid}`;
 
                 var url = `https://twitter.com/intent/tweet?hashtags=ThetTrouxaApp&hashtags=Trouxa&original_referer=${urlText}&text="${text}"&url=${urlText} `;
                 window.location = url;
