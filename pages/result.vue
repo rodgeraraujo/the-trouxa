@@ -107,7 +107,7 @@ export default {
                 console.log(this.countDown);
             } else {
                 var text = `${this.databaseQuote.name}, você é um trouxa por ${this.databaseQuote.text} ${this.databaseQuote.emoji}`;
-                var urlText = `https://156ac836.ngrok.io/${this.databaseQuote.uuid}`;
+                var urlText = `https://thetrouxa.surge.sh/${this.databaseQuote.uuid}`;
 
                 var url = `https://twitter.com/intent/tweet?hashtags=ThetTrouxaApp&hashtags=Trouxa&original_referer=${urlText}&text="${text}"&url=${urlText} `;
                 window.location = url;
