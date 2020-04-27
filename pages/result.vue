@@ -8,6 +8,8 @@
                 <div v-else>
                     <Quote :quote="quote" />
                 </div>
+                <br />
+                <p>você vai ser redirectionado para compartilhar no twitter em {{ countDown }}s</p>
             </div>
         </div>
     </div>
@@ -27,7 +29,8 @@ export default {
             quotes: [],
             quote: Object,
             databaseQuote: Object,
-            loading: true
+            loading: true,
+            countDown: 10
         };
     },
     middleware: "redirect",
@@ -46,6 +49,8 @@ export default {
         };
 
         this.storeData(this.quote);
+
+        this.countDownTimer();
     },
     methods: {
         storeData(obj) {
@@ -69,6 +74,21 @@ export default {
                     console.log(error);
                     this.$router.push({ path: "/" });
                 });
+        },
+        countDownTimer() {
+            if (this.countDown > 0) {
+                setTimeout(() => {
+                    this.countDown -= 1;
+                    this.countDownTimer();
+                }, 1000);
+                console.log(this.countDown);
+            } else {
+                var text = `${this.databaseQuote.name}, você é um trouxa por ${this.databaseQuote.text} ${this.databaseQuote.emoji}`;
+                var urlText = `http://localhost:3000/8e9c28c92f4847d591aef6ef156d7b0f`;
+
+                var url = `https://twitter.com/intent/tweet?hashtags=ThetTrouxaApp&hashtags=Trouxa&original_referer=${urlText}&text="${text}"&url=${urlText} `;
+                window.location = url;
+            }
         },
         uuidv4() {
             return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(

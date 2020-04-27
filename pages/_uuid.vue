@@ -7,6 +7,20 @@
                 </div>
                 <div v-else>
                     <Quote :quote="databaseQuote" />
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-6" id="tDiv">
+                            <strong>descubra pq vc é um trouxa</strong>
+                            <button
+                                id="tButton"
+                                v-on:click="onSubmit"
+                                class="localButton"
+                            >clica aqui!</button>
+                            <br />
+                            <br />
+                            <p>compartilha com os friends :p</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -15,6 +29,7 @@
 
 <script>
 import Quote from "~/components/Quote.vue";
+
 import firebase from "@/plugins/firebase";
 
 const quoteData = require("../data/data.json");
@@ -49,13 +64,27 @@ export default {
                 })
                 .catch(error => {
                     console.log(error);
+                    this.$router.push({ path: "/" });
                 });
+        },
+        onSubmit() {
+            this.$router.push({ path: "/" });
         }
     }
 };
 </script>
 
 <style scoped>
+.tweet-button {
+    display: inline-block;
+    width: 55px;
+    height: 21px;
+    background-image: url(https://help.twitter.com/content/dam/help-twitter/brand/logo.png);
+    background-position: 0 0;
+}
+.tweet-button:hover {
+    background-position: 0 -21px;
+}
 .loading {
     width: 50px;
 }

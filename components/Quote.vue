@@ -7,11 +7,6 @@
                     você é um trouxa por {{ sentence.text }} {{ sentence.emoji}} 〞
                 </blockquote>
                 <img :src="sentence.image" alt="Touxa" class="image" width="400" height="200" />
-                <div class="row">
-                    <div class="col-xs-6" id="tDiv">
-                        <button id="tButton" click="try" class="localButton">decubra vc tbm!</button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

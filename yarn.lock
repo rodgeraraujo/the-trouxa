@@ -9039,6 +9039,13 @@ vue-eslint-parser@^7.0.0:
     esquery "^1.0.1"
     lodash "^4.17.15"
 
+vue-goodshare@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/vue-goodshare/-/vue-goodshare-1.5.0.tgz#f1dcc176c0d40bbeb18d86b7f372fc57e091f072"
+  integrity sha512-qlS9BPrk4t7BsZQd18FPaJh775lXa5+IKBPXQbapxJ/S9N6akE/sOPjQKTbykSoM2I0lMAoXe/tk7ma54Tgc4Q==
+  dependencies:
+    vue "^2.6.11"
+
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
