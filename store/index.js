@@ -1,5 +1,6 @@
 export const state = () => ({
-  redirect: false
+  redirect: false,
+  text: null
 });
 
 export const mutations = {

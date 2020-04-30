@@ -6,10 +6,22 @@
                     <img class="loading" src="/loading.gif" alt />
                 </div>
                 <div v-else>
-                    <Quote :quote="quote" />
+                    <Quote :quote="databaseQuote" />
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-6" id="tDiv">
+                            <strong>descubra pq vc é um trouxa</strong>
+                            <button
+                                id="tButton"
+                                v-on:click="onSubmit"
+                                class="localButton"
+                            >clica aqui!</button>
+                            <br />
+                            <br />
+                            <p>compartilha com os friends :p</p>
+                        </div>
+                    </div>
                 </div>
-                <br />
-                <p>você vai ser redirectionado para compartilhar no twitter em {{ countDown }}s</p>
             </div>
         </div>
     </div>
@@ -17,6 +29,7 @@
 
 <script>
 import Quote from "~/components/Quote.vue";
+
 import firebase from "@/plugins/firebase";
 
 const quoteData = require("../data/data.json");
@@ -49,86 +62,55 @@ export default {
     },
     data() {
         return {
-            quotes: [],
-            quote: Object,
+            uuid: this.$route.params.uuid,
             databaseQuote: Object,
-            loading: true,
-            countDown: 10
+            loading: true
         };
     },
-    middleware: "redirect",
     components: {
         Quote
     },
-    mounted() {
-        this.quotes = quoteData.sentences;
-        var choice = Math.floor(Math.random() * this.quotes.length);
-
-        this.quote = {
-            name: this.$route.query.name,
-            text: this.quotes[choice],
-            emoji: emoji[choice].char,
-            image: this.$route.query.url
-        };
-
-        this.storeData(this.quote);
-
-        this.countDownTimer();
+    created() {
+        this.retrieveData();
     },
     methods: {
-        storeData(obj) {
-            this.databaseQuote = {
-                uuid: this.uuidv4().replace(/-/g, ""),
-                name: obj.name,
-                text: obj.text,
-                emoji: obj.emoji,
-                image: obj.image,
-                created_at: new Date()
-            };
-
+        retrieveData() {
             firebase
                 .firestore()
                 .collection("texts")
-                .add(this.databaseQuote)
-                .then(ref => {
+                .where("uuid", "==", this.uuid)
+                .get()
+                .then(data => {
                     this.loading = false;
+                    const doc = data.docs.map(doc => doc.data());
+                    this.databaseQuote = doc[0];
+                    if (this.databaseQuote == null) {
+                        this.$router.push({ path: "/" });
+                    }
                 })
                 .catch(error => {
                     console.log(error);
                     this.$router.push({ path: "/" });
                 });
         },
-        countDownTimer() {
-            if (this.countDown > 0) {
-                setTimeout(() => {
-                    this.countDown -= 1;
-                    this.countDownTimer();
-                }, 1000);
-                console.log(this.countDown);
-            } else {
-                var text = `${this.databaseQuote.name}, você é um trouxa por ${this.databaseQuote.text} ${this.databaseQuote.emoji}`;
-                var urlText = `https://thetrouxa.surge.sh/${this.databaseQuote.uuid}`;
-
-                var url = `https://twitter.com/intent/tweet?hashtags=TheTrouxaApp&hashtags=Trouxa&original_referer=${urlText}&text="${text}"&url=${urlText} `;
-                window.location = url;
-            }
-        },
-        uuidv4() {
-            return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
-                /[xy]/g,
-                function(c) {
-                    var r = (Math.random() * 16) | 0,
-                        v = c == "x" ? r : (r & 0x3) | 0x8;
-
-                    return v.toString(16);
-                }
-            );
+        onSubmit() {
+            this.$router.push({ path: "/" });
         }
     }
 };
 </script>
 
 <style scoped>
+.tweet-button {
+    display: inline-block;
+    width: 55px;
+    height: 21px;
+    background-image: url(https://help.twitter.com/content/dam/help-twitter/brand/logo.png);
+    background-position: 0 0;
+}
+.tweet-button:hover {
+    background-position: 0 -21px;
+}
 .loading {
     width: 50px;
 }
